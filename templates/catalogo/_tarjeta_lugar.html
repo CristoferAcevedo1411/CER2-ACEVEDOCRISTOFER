@@ -1,0 +1,11 @@
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <img src="{{ lugar.imagen }}" class="card-img-top" alt="{{ lugar.nombre }}">
+    <div class="card-body">
+      <span class="badge bg-secondary">{{ lugar.categoria.nombre }}</span>
+      <h5 class="card-title mt-2">{{ lugar.nombre }}</h5>
+      <p class="card-text">{{ lugar.descripcion|truncatewords:20 }}</p>
+      <a href="{% url 'detalle_lugar' lugar.pk %}" class="btn btn-primary btn-sm">Ver detalle</a>
+    </div>
+  </div>
+</div>

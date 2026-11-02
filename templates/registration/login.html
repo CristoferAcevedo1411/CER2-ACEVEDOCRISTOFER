@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="col-md-4 mx-auto">
+  <h2>Iniciar sesión</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button class="btn btn-primary">Ingresar</button>
+  </form>
+</div>
+{% endblock %}
