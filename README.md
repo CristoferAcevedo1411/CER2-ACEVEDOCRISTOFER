@@ -3,6 +3,12 @@
 Catálogo digital de lugares patrimoniales (Fundación Patrimonio Vivo) hecho
 con Django. Incluye zona pública y una zona de gestión con autenticación y permisos.
 
+## Requisitos
+
+Python 3.12 o superior
+pip
+Conexión a internet (Bootstrap, fuentes e imágenes se cargan desde la web)
+
 ## Instalación y ejecución
 
 ```
