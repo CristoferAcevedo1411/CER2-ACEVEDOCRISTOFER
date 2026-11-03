@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block contenido %}
-<div class="p-5 mb-4 bg-light rounded">
-  <h1>Fundación Patrimonio Vivo</h1>
-  <p class="lead">Identificamos, documentamos y difundimos lugares de interés patrimonial en Chile.</p>
-  <a class="btn btn-primary" href="{% url 'catalogo' %}">Explorar el catálogo</a>
-</div>
-<h2>Últimos lugares registrados</h2>
-<div class="row">
+<section class="py-5 text-center">
+  <p class="text-uppercase text-secondary fw-semibold small">Fundación Patrimonio Vivo</p>
+  <h1 class="display-4 fw-bold">Conoce y cuida el patrimonio de Chile</h1>
+  <p class="lead text-secondary col-lg-7 mx-auto">Identificamos, documentamos y difundimos lugares de interés patrimonial en distintas ciudades del país.</p>
+  <a class="btn btn-dark btn-lg rounded-pill" href="{% url 'catalogo' %}">Explorar el catálogo</a>
+</section>
+
+<h2 class="h4 mt-4 mb-4">Últimos lugares registrados</h2>
+<div class="row g-4">
   {% for lugar in destacados %}{% include 'catalogo/_tarjeta_lugar.html' %}{% endfor %}
 </div>
 {% endblock %}
