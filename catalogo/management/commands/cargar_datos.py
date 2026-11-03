@@ -8,7 +8,6 @@ class Command(BaseCommand):
     help = 'Carga datos de prueba y crea el grupo "Gestores" con permisos'
 
     def handle(self, *args, **options):
-        # 1. Categorías
         edificios, _ = Categoria.objects.get_or_create(
             nombre='Edificios históricos',
             defaults={'descripcion': 'Construcciones de valor histórico y arquitectónico.'})
@@ -19,31 +18,29 @@ class Command(BaseCommand):
             nombre='Murales',
             defaults={'descripcion': 'Arte mural de valor patrimonial.'})
 
-        # 2. Lugares (nombre, descripción, ubicación, año, semilla de imagen, categoría)
         lugares = [
             ('Palacio de La Moneda', 'Sede de la Presidencia de la República.',
-             'Santiago', 1805, 'moneda', edificios),
+             'Santiago', 1805, 'https://www.monumentos.gob.cl/sites/default/files/styles/16x9_grande/public/image-monumentos/mh_00027_2017_av_009.jpg?h=920929c4&itok=xNOHTyVR', edificios),
             ('Teatro Municipal de Santiago', 'Principal teatro de ópera y ballet del país.',
-             'Santiago', 1857, 'teatro', edificios),
+             'Santiago', 1857, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU4XpSyATzujQGkfn1UfCeNyoz1PjIVzzUOrkyTEjPdQ&s=10', edificios),
             ('Ascensor Concepción', 'Uno de los funiculares históricos de Valparaíso.',
-             'Valparaíso', 1883, 'concepcion', edificios),
+             'Valparaíso', 1883, 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Ascensor_2.JPG/1280px-Ascensor_2.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail', edificios),
             ('Monumento a los Héroes de Iquique', 'Homenaje a los caídos en el Combate Naval de Iquique.',
-             'Valparaíso', 1886, 'heroes', monumentos),
+             'Valparaíso', 1886, 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Monumento_a_los_H%C3%A9roes_de_Iquique_%28Plaza_Sotomayor%29.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original', monumentos),
             ('Mural Presencia de América Latina', 'Mural de gran formato en la Universidad de Concepción.',
-             'Concepción', 1965, 'mural', murales),
+             'Concepción', 1965, 'https://noticias.udec.cl/wp-content/uploads/2021/09/mural2-1024x557.png', murales),
         ]
-        for nombre, descripcion, ubicacion, anio, semilla, categoria in lugares:
-            LugarPatrimonial.objects.get_or_create(
+        for nombre, descripcion, ubicacion, anio, imagen, categoria in lugares:
+            LugarPatrimonial.objects.update_or_create(
                 nombre=nombre,
                 defaults={
                     'descripcion': descripcion,
                     'ubicacion': ubicacion,
                     'anio_construccion': anio,
-                    'imagen': f'https://picsum.photos/seed/{semilla}/600/400',
+                    'imagen': imagen ,
                     'categoria': categoria,
                 })
 
-        # 3. Grupo "Gestores" con permisos de agregar y editar lugares
         grupo, _ = Group.objects.get_or_create(name='Gestores')
         permisos = Permission.objects.filter(
             content_type__app_label='catalogo',
