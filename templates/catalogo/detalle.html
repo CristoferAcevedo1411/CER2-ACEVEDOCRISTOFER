@@ -4,14 +4,12 @@
 <p class="mb-4"><a href="{% url 'catalogo' %}" class="text-secondary text-decoration-none small">← Volver al catálogo</a></p>
 
 <div class="row g-5">
-  <!-- Columna izquierda: foto y texto -->
   <div class="col-lg-8">
     <img src="{{ lugar.imagen }}" class="img-fluid detalle-img rounded-4 mb-4" alt="{{ lugar.nombre }}">
     <h1 class="fw-bold">{{ lugar.nombre }}</h1>
     <p class="text-secondary fs-5">{{ lugar.descripcion }}</p>
   </div>
 
-  <!-- Columna derecha: panel que se queda fijo al hacer scroll -->
   <div class="col-lg-4">
     <aside class="panel-lateral card border-0 shadow-sm rounded-4">
       <div class="card-body p-4">
