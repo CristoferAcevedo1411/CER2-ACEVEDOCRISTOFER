@@ -5,7 +5,6 @@ from catalogo.models import Categoria, LugarPatrimonial
 
 
 class Command(BaseCommand):
-    help = 'Carga datos de prueba y crea el grupo "Gestores" con permisos'
 
     def handle(self, *args, **options):
         edificios, _ = Categoria.objects.get_or_create(

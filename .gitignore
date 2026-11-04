@@ -1,12 +1,5 @@
-# Python
 __pycache__/
 *.pyc
-
-# Base de datos local
 db.sqlite3
-
-# Secretos y configuración local
 .env
-
-# Editor
 .vscode/
