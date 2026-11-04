@@ -6,7 +6,6 @@ from .forms import LugarForm
 from .models import Categoria, LugarPatrimonial
 
 
-# ---------- Zona pública ----------
 def inicio(request):
     destacados = LugarPatrimonial.objects.select_related('categoria').order_by('-id')[:3]
     return render(request, 'catalogo/inicio.html', {'destacados': destacados})
@@ -33,7 +32,6 @@ def lugares_por_categoria(request, pk):
     })
 
 
-# ---------- Zona privada ----------
 @login_required
 def gestion(request):
     lugares = LugarPatrimonial.objects.select_related('categoria')
